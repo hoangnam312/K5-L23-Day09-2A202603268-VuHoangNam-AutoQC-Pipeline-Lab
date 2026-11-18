@@ -35,5 +35,78 @@ from ..common import ERROR, parse_yolo_line  # noqa: F401
 
 
 def fix(ds, issues, cfg):
-    # TODO
-    raise NotImplementedError("autofix chưa làm")
+    drop_codes = {"BAD_FORMAT", "BAD_CLASS_ID", "BOX_ZERO", "DUP_BOX"}
+    remove_prefixes = ("DUP_IMAGE_",)
+    remove_codes = {"LEAK_TEST", "CORRUPT_IMAGE", "BAD_SIZE"}
+    removed_images = set()
+    changes = []
+    by_file = defaultdict(dict)
+
+    for issue in issues:
+        if issue.severity != ERROR:
+            continue
+        code, stem = issue.code, issue.image
+        if code == "MISSING_LABEL_FILE":
+            changes.append({"image": stem, "line": None, "action": "needs_label",
+                            "before": "(không có file)", "after": "chuyển người gán"})
+        elif code == "BAD_CLASS_NAME" and ds.yaml_path.exists():
+            data = yaml.safe_load(ds.yaml_path.read_text(encoding="utf-8")) or {}
+            data["names"] = list(cfg.get("classes", ds.classes))
+            ds.yaml_path.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
+            changes.append({"image": "data.yaml", "line": None, "action": "rename_classes",
+                            "before": "names cũ", "after": "names theo cấu hình"})
+        elif code in remove_codes or code.startswith(remove_prefixes):
+            removed_images.add(stem)
+        elif code in drop_codes and issue.line is not None:
+            entry = by_file.setdefault(stem, {}).setdefault(issue.line, {"action": "drop_line", "codes": set()})
+            entry["action"] = "drop_line"
+            entry["codes"].add(code)
+        elif code == "BOX_OUT_OF_IMAGE" and issue.line is not None:
+            entry = by_file.setdefault(stem, {}).setdefault(issue.line, {"action": "clip_box", "codes": set()})
+            if entry["action"] != "drop_line":
+                entry["action"] = "clip_box"
+            entry["codes"].add(code)
+
+    for stem in sorted(removed_images):
+        image = ds.image_path(stem)
+        if image and image.exists():
+            image.unlink()
+        label = ds.label_path(stem)
+        if label.exists():
+            label.unlink()
+        changes.append({"image": stem, "line": None, "action": "remove_image", "before": stem, "after": "removed"})
+
+    for stem, line_map in by_file.items():
+        if stem in removed_images:
+            continue
+        path = ds.label_path(stem)
+        if not path.exists():
+            continue
+        original = path.read_text(encoding="utf-8", errors="replace").splitlines()
+        updated = list(original)
+        for line_no, info in line_map.items():
+            if not 1 <= line_no <= len(original):
+                continue
+            before = original[line_no - 1]
+            if info["action"] == "drop_line":
+                updated[line_no - 1] = None
+                changes.append({"image": stem, "line": line_no, "action": "drop_line", "before": before, "after": ""})
+                continue
+            try:
+                class_id, cx, cy, width, height = parse_yolo_line(before)
+            except (ValueError, OverflowError):
+                updated[line_no - 1] = None
+                changes.append({"image": stem, "line": line_no, "action": "drop_line", "before": before, "after": ""})
+                continue
+            x1, y1 = max(0.0, cx - width / 2), max(0.0, cy - height / 2)
+            x2, y2 = min(1.0, cx + width / 2), min(1.0, cy + height / 2)
+            if x2 <= x1 or y2 <= y1:
+                updated[line_no - 1] = None
+                changes.append({"image": stem, "line": line_no, "action": "drop_line", "before": before, "after": ""})
+            else:
+                after = f"{class_id} {(x1+x2)/2:.8g} {(y1+y2)/2:.8g} {x2-x1:.8g} {y2-y1:.8g}"
+                updated[line_no - 1] = after
+                if after != before:
+                    changes.append({"image": stem, "line": line_no, "action": "clip_box", "before": before, "after": after})
+        path.write_text("\n".join(line for line in updated if line is not None) + ("\n" if updated else ""), encoding="utf-8")
+    return changes
