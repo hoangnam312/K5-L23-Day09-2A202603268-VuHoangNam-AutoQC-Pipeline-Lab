@@ -64,12 +64,12 @@
       "n_injected": 3
     },
     "DUP_IMAGE_NEAR": {
-      "tp": 5,
+      "tp": 4,
       "fp": 0,
-      "fn": 1,
+      "fn": 2,
       "precision": 1.0,
-      "recall": 0.833,
-      "f1": 0.909,
+      "recall": 0.667,
+      "f1": 0.8,
       "n_injected": 6
     },
     "MISSING_LABEL_FILE": {

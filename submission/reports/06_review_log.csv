@@ -26,6 +26,7 @@ img_0066,đã duyệt: thay bằng nhãn người,FIXED_DROP_LINE;POSSIBLE_MISSI
 img_0001,đã duyệt: thay bằng nhãn người,FIXED_DROP_LINE;POSSIBLE_MISSING
 img_0202,đã duyệt: thay bằng nhãn người,POSSIBLE_WRONG_CLASS
 img_0019,đã duyệt: thay bằng nhãn người,POSSIBLE_WRONG_CLASS
+img_0021,đã duyệt: thay bằng nhãn người,POSSIBLE_WRONG_CLASS
 img_0124,đã duyệt: thay bằng nhãn người,POSSIBLE_WRONG_CLASS
 img_0071,đã duyệt: thay bằng nhãn người,POSSIBLE_WRONG_CLASS
 img_0068,đã duyệt: thay bằng nhãn người,POSSIBLE_FALSE_POS;POSSIBLE_MISSING
@@ -78,4 +79,3 @@ img_0047,đã duyệt: thay bằng nhãn người,POSSIBLE_MISSING
 img_0093,đã duyệt: thay bằng nhãn người,POSSIBLE_MISSING
 img_0134,đã duyệt: thay bằng nhãn người,POSSIBLE_MISSING
 img_0012,đã duyệt: thay bằng nhãn người,POSSIBLE_MISSING
-img_0210,đã duyệt: thay bằng nhãn người,POSSIBLE_MISSING

@@ -1,9 +1,9 @@
 # Danh sách lỗi — SAU người duyệt (v3)
-ảnh đã quét: 193
+ảnh đã quét: 202
 
 label_format -> 10 dòng
-missing_labels -> 3 dòng
-second_opinion -> 53 dòng
+missing_labels -> 4 dòng
+second_opinion -> 57 dòng
 
 [WARN ] BOX_HUGE             img_0018.txt:1  Diện tích box vượt ngưỡng cấu hình.
 [WARN ] BOX_HUGE             img_0128.txt:1  Diện tích box vượt ngưỡng cấu hình.
@@ -15,6 +15,7 @@ second_opinion -> 53 dòng
 [WARN ] BOX_TINY             img_0161.txt:3  Cạnh ngắn của box nhỏ hơn ngưỡng pixel.
 [WARN ] BOX_TINY             img_0161.txt:4  Cạnh ngắn của box nhỏ hơn ngưỡng pixel.
 [WARN ] BOX_TINY             img_0183.txt:11  Cạnh ngắn của box nhỏ hơn ngưỡng pixel.
+[WARN ] EMPTY_LABEL          img_0013  file nhãn rỗng: ảnh nền hay thiếu nhãn?
 [WARN ] EMPTY_LABEL          img_0097  file nhãn rỗng: ảnh nền hay thiếu nhãn?
 [WARN ] EMPTY_LABEL          img_0129  file nhãn rỗng: ảnh nền hay thiếu nhãn?
 [WARN ] EMPTY_LABEL          img_0192  file nhãn rỗng: ảnh nền hay thiếu nhãn?
@@ -33,6 +34,7 @@ second_opinion -> 53 dòng
 [WARN ] POSSIBLE_FALSE_POS   img_0134.txt:5  Nhãn không khớp với dự đoán model đủ độ tin cậy.
 [WARN ] POSSIBLE_FALSE_POS   img_0149.txt:3  Nhãn không khớp với dự đoán model đủ độ tin cậy.
 [WARN ] POSSIBLE_FALSE_POS   img_0150.txt:3  Nhãn không khớp với dự đoán model đủ độ tin cậy.
+[WARN ] POSSIBLE_FALSE_POS   img_0177.txt:2  Nhãn không khớp với dự đoán model đủ độ tin cậy.
 [WARN ] POSSIBLE_FALSE_POS   img_0180.txt:5  Nhãn không khớp với dự đoán model đủ độ tin cậy.
 [WARN ] POSSIBLE_FALSE_POS   img_0189.txt:4  Nhãn không khớp với dự đoán model đủ độ tin cậy.
 [WARN ] POSSIBLE_FALSE_POS   img_0191.txt:1  Nhãn không khớp với dự đoán model đủ độ tin cậy.
@@ -40,7 +42,9 @@ second_opinion -> 53 dòng
 [WARN ] POSSIBLE_FALSE_POS   img_0212.txt:4  Nhãn không khớp với dự đoán model đủ độ tin cậy.
 [WARN ] POSSIBLE_LOOSE_BOX   img_0015  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
 [WARN ] POSSIBLE_LOOSE_BOX   img_0018  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
+[WARN ] POSSIBLE_LOOSE_BOX   img_0021  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
 [WARN ] POSSIBLE_LOOSE_BOX   img_0036  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
+[WARN ] POSSIBLE_LOOSE_BOX   img_0038  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
 [WARN ] POSSIBLE_LOOSE_BOX   img_0045  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
 [WARN ] POSSIBLE_LOOSE_BOX   img_0046  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
 [WARN ] POSSIBLE_LOOSE_BOX   img_0054  Box nhãn cùng lớp có thể bị lệch hoặc quá rộng.
@@ -67,6 +71,7 @@ second_opinion -> 53 dòng
 [WARN ] POSSIBLE_MISSING     img_0160  Model phát hiện vật thể chưa có box nhãn.
 [WARN ] POSSIBLE_MISSING     img_0183  Model phát hiện vật thể chưa có box nhãn.
 [WARN ] POSSIBLE_MISSING     img_0199  Model phát hiện vật thể chưa có box nhãn.
+[WARN ] POSSIBLE_MISSING     img_0210  Model phát hiện vật thể chưa có box nhãn.
 [WARN ] POSSIBLE_MISSING     img_0220  Model phát hiện vật thể chưa có box nhãn.
 [WARN ] POSSIBLE_WRONG_CLASS img_0078  Box khớp với nhãn có ID lớp khác.
 [WARN ] POSSIBLE_WRONG_CLASS img_0083  Box khớp với nhãn có ID lớp khác.
@@ -75,10 +80,10 @@ second_opinion -> 53 dòng
 ## Tổng hợp theo mã
 warn  BOX_HUGE               3
 warn  BOX_TINY               7
-warn  EMPTY_LABEL            3
-warn  POSSIBLE_FALSE_POS     20
-warn  POSSIBLE_LOOSE_BOX     18
-warn  POSSIBLE_MISSING       12
+warn  EMPTY_LABEL            4
+warn  POSSIBLE_FALSE_POS     21
+warn  POSSIBLE_LOOSE_BOX     20
+warn  POSSIBLE_MISSING       13
 warn  POSSIBLE_WRONG_CLASS   3
 
-Kết luận: HOLD — Còn cảnh báo ở 34/193 ảnh (17.6%), đạt ngưỡng 10.0%.
+Kết luận: HOLD — Còn cảnh báo ở 38/202 ảnh (18.8%), đạt ngưỡng 10.0%.

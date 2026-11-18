@@ -2,17 +2,17 @@
   "verdict": {
     "decision": "Hold",
     "n_errors": 0,
-    "n_warn_images": 34,
-    "n_images": 193,
-    "warn_ratio": 0.1762,
+    "n_warn_images": 38,
+    "n_images": 202,
+    "warn_ratio": 0.1881,
     "reasons": [
-      "Còn cảnh báo ở 34/193 ảnh (17.6%), đạt ngưỡng 10.0%."
+      "Còn cảnh báo ở 38/202 ảnh (18.8%), đạt ngưỡng 10.0%."
     ]
   },
   "reviewed": 80,
   "budget": 80,
-  "seconds": 8.0,
+  "seconds": 9.8,
   "exported": "C:\\Personal\\AI_In_Action\\L2\\K5-L23-Day09-2A202603268-VuHoangNam-AutoQC-Pipeline-Lab\\submission\\export\\clean_v1",
-  "config_sha1": "eb7d1f3f1756f5262960d5e1a294d5d4f930dd2f",
+  "config_sha1": "931de84d25e796d472dab6b113df13bbd72ab195",
   "review_sim_sha1": "7988ca22827f780a7043a2300490e679a1697154"
 }

@@ -11,7 +11,7 @@ BOX_OUT_OF_IMAGE             5    5    0    0       1.00    1.00   1.00
 BOX_ZERO                     2    2    0    0       1.00    1.00   1.00
 DUP_BOX                      3    3    0    0       1.00    1.00   1.00
 DUP_IMAGE_EXACT              3    3    0    0       1.00    1.00   1.00
-DUP_IMAGE_NEAR               6    5    0    1       1.00    0.83   0.91
+DUP_IMAGE_NEAR               6    4    0    2       1.00    0.67   0.80
 MISSING_LABEL_FILE           2    2    0    0       1.00    1.00   1.00
 POSSIBLE_FALSE_POS           5    5   11    0       0.31    1.00   0.48
 POSSIBLE_LOOSE_BOX           5    1    4    4       0.20    0.20   0.20
